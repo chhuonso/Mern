@@ -10,16 +10,16 @@ class PersonCard  extends Component {
             hairColor: this.props['hairColor'],
 
 
-            // in the video option 
-            // this.state = {
-            // age: this.props.age
-            //}
         }
+        // in the video option 
+        // this.state = {
+        // age: this.props.age
+        // }
     }
-// in the video option
-    // changeAge = () => {
-//      this.setState({age: this.state.age + 1})
-    // }
+//in the video option
+    changeAge = () => {
+        this.setState({age: this.state.age + 1})
+    }
 
 
     render(){
@@ -29,10 +29,10 @@ class PersonCard  extends Component {
             <p>Age: {this.state.age}</p>
             <p>Hair Color: {this.state.hairColor}</p>
             {/* onClick= {this.changeAge} */}
-            <button onClick={()=>this.setState({age:this.state.age+1})}>Birthday Button for {this.state.firstName} {this.state.lastName}</button>
+            <button onClick={this.changeAge}>Birthday Button for {this.state.firstName} {this.state.lastName}</button>
         </div>
     }
-
+// ()=>this.setState({age:this.state.age+1})
 }
 
 export default PersonCard;
