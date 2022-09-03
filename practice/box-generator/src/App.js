@@ -1,4 +1,6 @@
 import React from 'react';
+import "./App.css";
+
 import BoxColor from './Components/BoxColor';
 
 
@@ -10,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

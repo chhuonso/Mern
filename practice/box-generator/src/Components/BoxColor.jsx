@@ -11,7 +11,7 @@ const BoxColor = (props) => {
 
     // function to submit (e) is event Object 
     const createBox = (e) => {
-        e.preventDefault(); // prevent the browser behavior || wont refresh every State change til submitted
+        e.preventDefault(); // prevent the browser behavior 
         setBoxes([...boxes, color]);
         setColor("");
         console.log("Submitted " + color);
