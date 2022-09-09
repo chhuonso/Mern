@@ -3,6 +3,7 @@ import './App.css';
 import People from './components/People';
 import Form from './components/Form';
 import Planets from './components/Planets';
+
 function App() {
   return (
     <div className="App">
