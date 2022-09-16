@@ -6,17 +6,21 @@ const CreateAuthor = (props) => {
     // STATE VARIABLES
     const nav = useNavigate();
     const [name, setName] = useState('');
+    const [select, setSelect] = useState('str');
+    const [isChecked, setIsChecked] = useState(false);
     // DATABASE ERRORS
     const [errors, setErrors] = useState([]); 
     // SUBMIT FORM
     const submitAuthor = (e) => {
         e.preventDefault();
         // CREATE form and route to the server
-        axios.post("http://localhost:8000/api/authors", { name }) //{ name } sending the Object itself
+        axios.post("http://localhost:8000/api/authors", { name, select, isChecked}) //{ name } sending the Object itself
             .then(res => {
                 console.log("✅✅✅✅✅✅✅✅✅ Author created SUCCESSS");
                 console.log(res.data);  //AXIOS (DATA formatted {obj} key data:)
                 setName(res.data)   
+                setSelect(res.data)   
+                setIsChecked(res.data)   
                 nav('/')    //NAVIGATE to MAIN but i deafult, replace to ROUTE (/authors)
             })
             .catch(err => {
@@ -44,8 +48,20 @@ const CreateAuthor = (props) => {
             <Link to="/">Home</Link>
             <h4>add a new author:</h4>
             <form onSubmit={submitAuthor}>
-                <label>Name: </label> <br />
-                <input type="text" value={name} onChange={e => setName(e.target.value)} /> <br />
+                <label>Name: 
+                    <input type="text" value={name} onChange={e => setName(e.target.value)} /> <br />
+                </label> <br />
+                <label>Select: </label>
+                    <select value={select} onChange={e => setSelect(e.target.value)}> 
+                        <option value='str'>STR</option>
+                        <option value='bol'>BOL</option>
+                        <option value='obj'>OBJ</option>
+                        <option value='arr'>ARR</option>
+                    </select>
+                    <br />
+                <label>Check: 
+                    <input type="checkbox" value={isChecked} checked={isChecked} onChange={e => setIsChecked(e.target.checked)}/> <br />
+                </label> <br />
                 <Link to="/">Cancel</Link>
                 <button>Submit</button>
             </form>

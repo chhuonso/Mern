@@ -26,15 +26,15 @@ const Main = (props) => {
         console.log(deleteID)
         // VANILLA JS CHEAT FOR A POPUP to confirm CANCEL or OK
         // React way is to use a modal
-        if(window.confirm("ARE YOU SURE?")){
+        if (window.confirm("ARE YOU SURE?")) {
             axios.delete(`http://localhost:8000/api/authors/${deleteID}`)
-            .then(res => {
-                console.log(res.data)
-                console.log("DELETE SUCCESS!")
-                // remove from the DOM after a SUCCESSFUL delete
-                setAuthors(authors.filter((author) => author._id !== deleteID))
-            })
-            .catch(err => console.log(err))
+                .then(res => {
+                    console.log(res.data)
+                    console.log("DELETE SUCCESS!")
+                    // remove from the DOM after a SUCCESSFUL delete
+                    setAuthors(authors.filter((author) => author._id !== deleteID))
+                })
+                .catch(err => console.log(err))
         }
     }
     return (
@@ -46,25 +46,32 @@ const Main = (props) => {
                 {/* {JSON.stringify(authors[0]._id)} */}
                 <h4>We have quotes by:</h4>
                 <table>
-                    <tr >
-                        <th>Author</th>
-                        <th>Action</th>
-                    </tr>
-                    {
-                        authors.map((author) => {
-                            return (
-                                <>
-                                    <tr >
-                                        <td key={author._id}>{author.name}</td>
+                    <thead>
+                        <tr >
+                            <th>Author</th>
+                            <th>Select</th>
+                            <th>Checked</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            authors.map((author) => {
+                                return (
+                                    <tr key={author._id}>
+                                        <td ><Link to={`/authors/show/${author._id}`}>{author.name}</Link></td>
+                                        <td>{author.select}</td>
+                                        <td>{author.isChecked ? 'YES' : 'NO'}</td>
                                         <td>
                                             <button onClick={() => goUpdate(author._id)}>Edit</button>
                                             <button onClick={() => deleteAuthor(author._id)}>Delete</button>
                                         </td>
                                     </tr>
-                                </> 
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
+                    </tbody>
                 </table>
             </div>
         </>

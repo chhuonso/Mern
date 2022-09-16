@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import Main from './components/Main';
 import CreateAuthor from './components/CreateAuthor';
 import UpdateAuthor from './components/UpdateAuthor';
+import OneAuthor from './components/OneAuthor';
 
 function App() {
   return (
@@ -15,11 +16,14 @@ function App() {
         <Route path="*" element={<Navigate to="/authors" replace/>}/>
         {/* CREATE */}
         <Route path='/authors/new' element={<CreateAuthor/>}/>
+        {/* SHOW ONE*/}
+        <Route path="/authors/show/:id" element={<OneAuthor/>}/> 
         {/* UPDATE */}
-        <Route path="/authors/update/:id" element={<UpdateAuthor/>}/>
+        <Route path="/authors/update/:id" element={<UpdateAuthor/>}/> 
       </Routes> 
     </div>
   )
 }
 
 export default App;
+ 

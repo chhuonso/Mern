@@ -4,7 +4,15 @@ const AuthorSchema = new mongoose.Schema({
     name : {
         type: String,
         required: [true, "{PATH} must be present"],
-        minlength: [3, "{PATH} must be at least 2 char long"]
+        minlength: [3, "{PATH} must be at least 3 char long"]
+    },
+    select : {
+        type: String,
+        required: [true, "{PATH} must select an option"],
+    },
+    isChecked : {
+        type: Boolean,
+        default: false
     },
 
 }, {timestamps: true})
